@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
+import AddGroup from './add_group';
 import Group from './group';
 
 const styles = StyleSheet.create({
@@ -23,16 +24,14 @@ const styles = StyleSheet.create({
 	},
 })
 
-const GroupList = () => (
+const Groups = (props) => (
 	<div>
 		<h2 className={ css(styles.title) }>参加したいグループを選択してください</h2>
+		<AddGroup { ...props } />
 		<ul className={ css(styles.group_list) }>
-			<Group />
-			<Group />
-			<Group />
-			<Group />
+			<Group { ...props } />
 		</ul>
 	</div>
 )
 
-export default GroupList;
+export default Groups;
