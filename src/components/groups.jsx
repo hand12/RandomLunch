@@ -30,6 +30,10 @@ const Groups = (props) => (
 		<AddGroup { ...props } />
 		<ul className={ css(styles.group_list) }>
 			<Group { ...props } />
+			<Group { ...props } />
+			<Group { ...props } />
+			<Group { ...props } />
+			<Group { ...props } />
 		</ul>
 	</div>
 )

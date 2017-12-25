@@ -18,7 +18,6 @@ class App extends Component {
 		this.state = {
 			isAddMemberModalActive: false,
 			isAddGroupModalActive: false,
-			isMembersOpen: false,
 			isLoading: false
 		}
 		this.addMemberModalToggle = this.addMemberModalToggle.bind(this)
@@ -49,25 +48,12 @@ class App extends Component {
 		}
 	}
 
-	membersToggle = () => {
-		if(this.state.isMembersOpen) {
-			this.setState({
-				isMembersOpen: false
-			})
-		} else {
-			this.setState({
-				isMembersOpen: true
-			})
-		}
-	}
-
   render() {
     return (
 			<div id="main_container" className={ css(styles.main_conatainer) }>
       	<Title />
 				<Groups
 					{ ...this.state }
-					membersToggle = { this.membersToggle }
 					addMemberModalToggle = { this.addMemberModalToggle }
 					addGroupModalToggle = { this.addGroupModalToggle }
 				/>

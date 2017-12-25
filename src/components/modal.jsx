@@ -1,9 +1,12 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
+import Members from './members';
+import Restaurants from './restaurants';
+
 const fadeInKeyframe = {
 	"0%": {
-		"opacity": "0" 
+		"opacity": "0"
 	},
 	"100%": {
 		"opacity": "1"
@@ -12,7 +15,7 @@ const fadeInKeyframe = {
 
 const popUpKeyframe = {
 	"0%": {
-		"transform": "translateY(800px)" 
+		"transform": "translateY(800px)"
 	},
 	"100%": {
 		"transform": "translateY(0)"
@@ -123,6 +126,8 @@ export class AddMemberModal extends React.Component {
 							<input name="user_name" placeholder="やまぴー" className={ css(styles.name_field) }/>
 							<button type="submit" className={ css(styles.button) }>参加する</button>
 						</div>
+						<Members { ...this.props } />
+						<Restaurants { ...this.props } />
 					</div>
 				</div>
 			)

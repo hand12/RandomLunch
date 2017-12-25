@@ -1,8 +1,6 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
-import Members from './members';
-
 const styles = StyleSheet.create({
 	group: {
 		"margin": "10px",
@@ -30,7 +28,7 @@ const styles = StyleSheet.create({
 		},
 		":hover:after": {
 			"width": "0",
-			"right": "0", 
+			"right": "0",
 			"background": "#EAEAEA",
 			"opacity": "0"
 		}
@@ -54,8 +52,7 @@ const styles = StyleSheet.create({
 const Group = (props) => (
 	<li className={ css(styles.group) } onClick={ props.addMemberModalToggle }>
 		<span className={ css(styles.name) }>転職会議</span>
-		<span className={ css(styles.member_count) } onClick={ props.membersToggle }>14人</span>
-		<Members { ...this.props } />
+		<span className={ css(styles.member_count) }>14人</span>
 	</li>
 )
 
