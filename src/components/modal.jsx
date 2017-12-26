@@ -47,6 +47,8 @@ const styles = StyleSheet.create({
 		"animationDuration": "0.5s",
 	},
 	panel: {
+		"max-height": "80vh",
+		"overflow-y": "scroll",
 		"position": "fixed",
 		"top": "40px",
 		"left": "30%",
