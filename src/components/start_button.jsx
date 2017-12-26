@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
 const StartButton = () => (
   <div className={ css(styles.container) }>
     1グループあたり
-    <input type="number" defaultValue="4" max="20" min="1" required className={ css(styles.number_field) }/>人で
+    <input type="number" defaultValue="4" max="6" min="1" required className={ css(styles.number_field) }/>人で
     <button type="submit" className={ css(styles.start_button) }>ランダムランチを開始</button>
   </div>
 )
