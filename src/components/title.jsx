@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
 
 const Title = () => (
 	<h1 id="title" className={ css(styles.title) }>
-		<span className={ css(styles.lunch) }>昼飯</span>
+		<span className={ css(styles.lunch) }>昼食</span>
 		<span className={ css(styles.meeting) }>会議</span>
 	</h1>
 )

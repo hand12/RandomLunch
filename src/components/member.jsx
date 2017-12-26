@@ -9,7 +9,8 @@ const styles = StyleSheet.create({
 		"background": "gray",
 		"border-radius": "50px",
 		"color": "white",
-		"font-size": "0.8rem"
+		"font-size": "0.8rem",
+		"transition": "0.3s"
 	},
 	name: {
     "vertical-align": "middle",
@@ -31,11 +32,21 @@ const styles = StyleSheet.create({
 	}
 })
 
-const Member = (props) => (
-  <li className={ css(styles.member) }>
-    <span className={ css(styles.name) }>やまぴー</span>
-    <span className={ css(styles.delete_button) } onClick={ props.membersToggle } >x</span>
-  </li>
-)
+class Member extends React.Component {
+	handleClick = () => {
+		this.props.deleteMember(this.props.member)
+		var memberId = `member-id-${ this.props.member.id }`
+		document.getElementById(memberId).style.opacity = "0"
+	}
+
+	render() {
+		return(
+			<li className={ css(styles.member) } id={ `member-id-${ this.props.member.id }` } >
+				<span className={ css(styles.name) }>{ this.props.member.name }</span>
+				<span className={ css(styles.delete_button) } onClick={ this.handleClick } >x</span>
+			</li>
+		)
+	}
+}
 
 export default Member

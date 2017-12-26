@@ -49,11 +49,46 @@ const styles = StyleSheet.create({
 	}
 })
 
-const Group = (props) => (
-	<li className={ css(styles.group) } onClick={ props.addMemberModalToggle }>
-		<span className={ css(styles.name) }>転職会議</span>
-		<span className={ css(styles.member_count) }>14人</span>
-	</li>
-)
+class Group extends React.Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			members: []
+		}
+	}
+
+	componentWillMount = () => {
+		this.fetchMembers()
+	}
+
+	componentWillReceiveProps = () => {
+		this.fetchMembers()
+	}
+
+	handleClick = () => {
+		this.props.addMemberModalToggle()
+		this.props.selectGroup(this.props.group)
+	}
+
+	fetchMembers = () => {
+		const params = new URLSearchParams()
+		params.set('group_id', this.props.group.id)
+		fetch("http://localhost:5000/members?" + params.toString())
+		.then((response) => response.json())
+		.then((responseData) => {
+			this.setState({
+				members: responseData
+			})
+		})
+	}
+	render() {
+		return(
+			<li className={ css(styles.group) } onClick = { this.handleClick }>
+				<span className={ css(styles.name) }>{ this.props.group.name }</span>
+				<span className={ css(styles.member_count) }>{ this.state.members.length }人</span>
+			</li>
+		)
+	}
+}
 
 export default Group

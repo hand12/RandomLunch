@@ -7,12 +7,21 @@ const styles = StyleSheet.create({
 	restaurants: {
 		"padding": "10px",
 		"margin-top": "10px",
-		"margin-bottom": "0",
+		"margin-bottom": "50px",
 		"list-style": "none",
 		"background": "#EAEAEA",
 		"display": "block",
     "border-radius": "4px",
-    "text-align": "left"
+		"text-align": "left",
+		"position": "relative",
+		":after": {
+			"position": "absolute",
+			"left": "0",
+			"right": "0",
+			"bottom": "-20px",
+			"content": "''",
+			"border-bottom": "1px dashed gray"
+		}
 	},
 	title: {
 		"text-align": "left",
@@ -28,18 +37,46 @@ const styles = StyleSheet.create({
 	}
 })
 
-const Restaurants = () => (
-	<div>
-		<h2 className={css(styles.title) }>ランチ候補一覧</h2>
-		<ul className={ css(styles.restaurants) }>
-			<Restaurant { ...this.props }/>
-			<Restaurant { ...this.props }/>
-			<Restaurant { ...this.props }/>
-			<Restaurant { ...this.props }/>
-			<Restaurant { ...this.props }/>
-			<Restaurant { ...this.props }/>
-		</ul>
-	</div>
-)
+class Restaurants extends React.Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			restaurants: []
+		}
+	}
+
+	componentWillMount = () => {
+		this.fetchRestaurants()
+	}
+
+	componentWillReceiveProps = () => {
+		this.fetchRestaurants()
+	}
+
+	fetchRestaurants = () => {
+		const params = new URLSearchParams()
+		params.set('group_id', this.props.selectedGroup.id)
+		fetch("http://localhost:5000/restaurants?" + params.toString())
+		.then((response) => response.json())
+		.then((responseData) => {
+			this.setState({
+				restaurants: responseData
+			})
+		})
+	}
+
+	render() {
+		return(
+			<div>
+				<h2 className={css(styles.title) }>ランチ候補一覧</h2>
+				<ul className={ css(styles.restaurants) }>
+					{ this.state.restaurants.map((restaurant) => {
+						return <Restaurant { ...this.props } restaurant = { restaurant } key = { restaurant.id} />
+					})}
+				</ul>
+			</div>
+		)
+	}
+}
 
 export default Restaurants

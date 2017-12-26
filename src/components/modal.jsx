@@ -2,7 +2,11 @@ import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
 import Members from './members';
+import MemberField from './member_field';
+import GroupField from './group_field';
+import RestaurantField from './restaurant_field';
 import Restaurants from './restaurants';
+import StartButton from './start_button';
 
 const fadeInKeyframe = {
 	"0%": {
@@ -44,7 +48,7 @@ const styles = StyleSheet.create({
 	},
 	panel: {
 		"position": "fixed",
-		"top": "100px",
+		"top": "40px",
 		"left": "30%",
 		"right": "30%",
 		"display": "inline-block",
@@ -70,12 +74,6 @@ const styles = StyleSheet.create({
 			"cursor": "pointer"
 		}
 	},
-	title: {
-		"display": "inline-block",
-		"padding": "0 10px",
-		"border-left": "5px solid #34AA33",
-		"margin-bottom": "50px"
-	},
 	loading: {
 		":after": {
 			"content": "''",
@@ -89,26 +87,6 @@ const styles = StyleSheet.create({
 			"animationIterationCount": "infinite"
 		}
 	},
-	name_field: {
-		"padding": "10px",
-		"font-size": "1.2rem",
-		"border-radius": "4px",
-		"border": "1px solid #34AA33"
-	},
-	button: {
-		"padding": "14px",
-		"font-size": "1.2rem",
-		"border-radius": "4px",
-		"background": "linear-gradient(135deg, #34AA33, #76B90E)",
-		"margin-left": "10px",
-		"margin-top": "10px",
-		"color": "white",
-		"transition": "0.2s",
-		":hover": {
-			"background": "linear-gradient(135deg, #34AA33, #76B90E)",
-			"box-shadow": "rgba(0, 0, 0, 0.2) 2px 2px 5px 0px",
-		}
-	}
 })
 
 export class AddMemberModal extends React.Component {
@@ -119,15 +97,11 @@ export class AddMemberModal extends React.Component {
 					<div className={ css(styles.shadow) }></div>
 					<div className={ css(styles.panel) }>
 						<div className={ css(styles.close_button) } onClick={ this.props.modalToggle }>X</div>
-						<h2 className={ css(styles.title) }>
-							表示する名前は何にしますか？
-						</h2>
-						<div>
-							<input name="user_name" placeholder="やまぴー" className={ css(styles.name_field) }/>
-							<button type="submit" className={ css(styles.button) }>参加する</button>
-						</div>
+						<MemberField { ...this.props } />
 						<Members { ...this.props } />
+						<RestaurantField { ...this.props } />
 						<Restaurants { ...this.props } />
+						<StartButton />
 					</div>
 				</div>
 			)
@@ -145,13 +119,7 @@ export class AddGroupModal extends React.Component {
 					<div className={ css(styles.shadow) }></div>
 					<div className={ css(styles.panel) }>
 						<div className={ css(styles.close_button) } onClick={ this.props.modalToggle }>X</div>
-						<h2 className={ css(styles.title) }>
-							グループの新規作成
-						</h2>
-						<div>
-							<input name="group_name" placeholder="TKメディアユニット" className={ css(styles.name_field) }/>
-							<button type="submit" className={ css(styles.button) }>作成</button>
-						</div>
+						<GroupField { ...this.props } />
 					</div>
 				</div>
 			)

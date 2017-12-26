@@ -9,7 +9,8 @@ const styles = StyleSheet.create({
 		"background": "gray",
 		"border-radius": "50px",
 		"color": "white",
-		"font-size": "0.8rem"
+		"font-size": "0.8rem",
+		"transition": "0.3s"
 	},
 	name: {
     "vertical-align": "middle",
@@ -31,11 +32,21 @@ const styles = StyleSheet.create({
 	}
 })
 
-const Resraurant = (props) => (
-  <li className={ css(styles.restaurant) }>
-    <span className={ css(styles.name) }>龍門</span>
-    <span className={ css(styles.delete_button) }>x</span>
-  </li>
-)
+class Restaurant extends React.Component {
+	handleClick = () => {
+		this.props.deleteRestaurant(this.props.restaurant)
+		var restaurantId = `restaurant-id-${ this.props.restaurant.id }`
+		document.getElementById(restaurantId).style.opacity = "0"
+	}
 
-export default Resraurant
+	render() {
+		return(
+			<li className={ css(styles.restaurant) } id={ `restaurant-id-${ this.props.restaurant.id }` }>
+				<span className={ css(styles.name) }>{ this.props.restaurant.name }</span>
+				<span className={ css(styles.delete_button) } onClick={ this.handleClick }>x</span>
+			</li>
+		)
+	}
+}
+
+export default Restaurant

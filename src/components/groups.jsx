@@ -29,11 +29,9 @@ const Groups = (props) => (
 		<h2 className={ css(styles.title) }>参加したいグループを選択してください</h2>
 		<AddGroup { ...props } />
 		<ul className={ css(styles.group_list) }>
-			<Group { ...props } />
-			<Group { ...props } />
-			<Group { ...props } />
-			<Group { ...props } />
-			<Group { ...props } />
+			{ props.groups.map((group) => {
+				return <Group { ...props } group={ group } key={ group.id } />
+			})}
 		</ul>
 	</div>
 )
