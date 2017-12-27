@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
 import Restaurant from "./restaurant";
@@ -11,14 +11,11 @@ const styles = StyleSheet.create({
   },
 })
 
-const Restaurants = () => (
+const Restaurants = (props) => (
   <ul className={ css(styles.restaurants) }>
-    <Restaurant />
-    <Restaurant />
-    <Restaurant />
-    <Restaurant />
-    <Restaurant />
-    <Restaurant />
+    { props.result.restaurants.map((result) => {
+      return <Restaurant restaurant = { result.restaurant } key = { result.restaurant.id } members = { result.members } />
+    })}
   </ul>
 )
 

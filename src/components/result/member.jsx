@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
 const styles = StyleSheet.create({
@@ -12,8 +12,8 @@ const styles = StyleSheet.create({
   }
 })
 
-const Member = () => (
-  <li className={ css(styles.member) }>やまぴ</li>
+const Member = (props) => (
+  <li className={ css(styles.member) }>{ props.member.name }</li>
 )
 
 export default Member;

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
 import Member from './member';
@@ -10,13 +10,11 @@ const styles = StyleSheet.create({
   },
 })
 
-const Members = () => (
+const Members = (props) => (
   <ul className={ css(styles.members) }>
-    <Member />
-    <Member />
-    <Member />
-    <Member />
-    <Member />
+    { props.members.map((member) => {
+      return <Member member = { member } key = { member.id } />
+    })}
   </ul>
 )
 

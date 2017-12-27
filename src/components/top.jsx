@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { StyleSheet, css } from 'aphrodite';
+import { withRouter } from 'react-router-dom'
 import '../App.css';
 
 import Title from "./title";
-import Groups from "./groups";
-import { AddMemberModal, AddGroupModal, LoadingModal } from './modal';
+import Groups from "./top/groups";
+import { AddMemberModal, AddGroupModal, LoadingModal } from './top/modal';
 
 const styles = StyleSheet.create({
 	main_conatainer: {
@@ -170,6 +171,29 @@ class Top extends Component {
 		.catch((err) => {
 			alert(err)
 		})
+  }
+
+  fetchResult = (members_num_per_group) => {
+    const params = new URLSearchParams()
+    params.set('members_num_per_group', members_num_per_group)
+		fetch(`http://localhost:5000/groups/${this.state.selectedGroup.id.toString()}?${ params.toString() }`)
+		.then((response) => {
+			this.addMemberModalToggle()
+			this.loadingModalToggle()
+			if(!response.ok) {
+				throw Error(response.statusText)
+			}
+			return response
+    })
+    .then((response) => response.json())
+		.then((responseData) => {
+      this.loadingModalToggle()
+      this.props.setResult(responseData)
+      this.props.history.push("/result")
+		})
+		.catch((err) => {
+			alert(err)
+		})
 	}
 
   render() {
@@ -190,6 +214,7 @@ class Top extends Component {
 					deleteMember = { this.deleteMember }
 					addRestaurant = { this.addRestaurant }
 					deleteRestaurant = { this.deleteRestaurant }
+          fetchResult = { this.fetchResult }
 				/>
 				<AddGroupModal
 					{ ...this.state }
@@ -202,4 +227,4 @@ class Top extends Component {
   }
 }
 
-export default Top;
+export default withRouter(Top);

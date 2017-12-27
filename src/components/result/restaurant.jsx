@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
 import Members from "./members";
@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
     "background": "#f5f5f5",
     "margin": "0 10px 10px",
     "border-radius": "2.5px",
+    "vertical-align": "top",
     "box-shadow": "rgba(0, 0, 0, 0.2) 2px 2px 5px 0px",
   },
   name: {
@@ -24,12 +25,12 @@ const styles = StyleSheet.create({
   },
 })
 
-const Restaurant = () => (
+const Restaurant = (props) => (
   <li className={ css(styles.restaurant) }>
     <h2 className={ css(styles.name) }>
-      龍門
+      { props.restaurant.name }
     </h2>
-    <Members />
+    <Members { ...props } />
   </li>
 )
 

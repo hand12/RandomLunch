@@ -30,12 +30,25 @@ const styles = StyleSheet.create({
   }
 })
 
-const StartButton = () => (
-  <div className={ css(styles.container) }>
-    1グループあたり
-    <input type="number" defaultValue="4" max="6" min="1" required className={ css(styles.number_field) }/>人で
-    <button type="submit" className={ css(styles.start_button) }>ランダムランチを開始</button>
-  </div>
-)
+class StartButton extends React.Component {
+  handleClick = () => {
+    var members_num_per_group = document.getElementById('members-num-per-group').value
+    if (members_num_per_group <= 0) {
+      alert("0より大きい数字を入力してください")
+    } else {
+      this.props.fetchResult(members_num_per_group)
+    }
+  }
+
+  render() {
+    return(
+      <div className={ css(styles.container) }>
+        1グループあたり
+        <input type="number" id="members-num-per-group" defaultValue="4" max="6" min="1" required className={ css(styles.number_field) }/>人で
+        <button type="submit" className={ css(styles.start_button) } onClick={ this.handleClick }>ランダムランチを開始</button>
+      </div>
+    )
+  }
+}
 
 export default StartButton

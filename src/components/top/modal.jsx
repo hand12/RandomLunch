@@ -103,7 +103,7 @@ export class AddMemberModal extends React.Component {
 						<Members { ...this.props } />
 						<RestaurantField { ...this.props } />
 						<Restaurants { ...this.props } />
-						<StartButton />
+						<StartButton { ...this.props } />
 					</div>
 				</div>
 			)
