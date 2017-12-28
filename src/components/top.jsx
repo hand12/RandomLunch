@@ -7,6 +7,8 @@ import Title from "./title";
 import Groups from "./top/groups";
 import { AddMemberModal, AddGroupModal, LoadingModal } from './top/modal';
 
+const HOST = "https://damp-crag-50946.herokuapp.com/";
+
 const styles = StyleSheet.create({
 	main_conatainer: {
 		margin: "100px"
@@ -72,7 +74,7 @@ class Top extends Component {
 	}
 
 	fetchGroups = () => {
-		fetch("http://localhost:5000/groups")
+		fetch(HOST + "groups")
 		.then((response) => response.json())
 		.then((responseData) => {
 			this.setState({
@@ -82,7 +84,7 @@ class Top extends Component {
 	}
 
 	addGroup = (formData) => {
-		fetch("http://localhost:5000/groups", {
+		fetch(HOST + "groups", {
 			method: "POST",
 			body: formData
 		})
@@ -104,7 +106,7 @@ class Top extends Component {
 	}
 
 	addMember = (formData) => {
-		fetch("http://localhost:5000/members", {
+		fetch(HOST + "members", {
 			method: "POST",
 			body: formData
 		})
@@ -124,7 +126,7 @@ class Top extends Component {
 	}
 
 	addRestaurant = (formData) => {
-		fetch("http://localhost:5000/restaurants", {
+		fetch(HOST + "restaurants", {
 			method: "POST",
 			body: formData
 		})
@@ -144,7 +146,7 @@ class Top extends Component {
 	}
 
 	deleteMember = (member) => {
-		fetch("http://localhost:5000/members/" + member.id.toString(), {
+		fetch(HOST + "members/" + member.id.toString(), {
 			method: "DELETE",
 		})
 		.then((response) => {
@@ -159,7 +161,7 @@ class Top extends Component {
 	}
 
 	deleteRestaurant = (restaurant) => {
-		fetch("http://localhost:5000/restaurants/" + restaurant.id.toString(), {
+		fetch(HOST + "restaurants/" + restaurant.id.toString(), {
 			method: "DELETE",
 		})
 		.then((response) => {
@@ -176,7 +178,7 @@ class Top extends Component {
   fetchResult = (members_num_per_group) => {
     const params = new URLSearchParams()
     params.set('members_num_per_group', members_num_per_group)
-		fetch(`http://localhost:5000/groups/${this.state.selectedGroup.id.toString()}?${ params.toString() }`)
+		fetch(HOST + `groups/${this.state.selectedGroup.id.toString()}?${ params.toString() }`)
 		.then((response) => {
 			this.addMemberModalToggle()
 			this.loadingModalToggle()

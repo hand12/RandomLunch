@@ -55,8 +55,9 @@ class Restaurants extends React.Component {
 
 	fetchRestaurants = () => {
 		const params = new URLSearchParams()
+		const HOST = "https://damp-crag-50946.herokuapp.com/"
 		params.set('group_id', this.props.selectedGroup.id)
-		fetch("http://localhost:5000/restaurants?" + params.toString())
+		fetch(HOST + "restaurants?" + params.toString())
 		.then((response) => response.json())
 		.then((responseData) => {
 			this.setState({

@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
+const HOST = "https://damp-crag-50946.herokuapp.com/"
+
 const styles = StyleSheet.create({
 	group: {
 		"margin": "10px",
@@ -73,7 +75,7 @@ class Group extends React.Component {
 	fetchMembers = () => {
 		const params = new URLSearchParams()
 		params.set('group_id', this.props.group.id)
-		fetch("http://localhost:5000/members?" + params.toString())
+		fetch(HOST + "members?" + params.toString())
 		.then((response) => response.json())
 		.then((responseData) => {
 			this.setState({
