@@ -2,7 +2,7 @@
   "name": "random_lunch",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://hand12.github.io/RandomLunch",
+  "homepage": "https://hand12.github.io/RandomLunch/",
   "dependencies": {
     "aphrodite": "^1.2.5",
     "react": "^16.2.0",
