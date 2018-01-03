@@ -25,6 +25,7 @@ class App extends React.Component {
 		return(
 			<BrowserRouter>
 				<div>
+					{console.log("hoge")}
 					<Route exact path="/" component={ () => (<Top setResult = { this.setResult } />) } />
 					<Route path="/result" component={ () => (<Result { ...this.state } />) } />
 				</div>
