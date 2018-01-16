@@ -74,23 +74,25 @@ class Top extends Component {
 	}
 
 	fetchGroups = () => {
+		this.loadingModalToggle()
 		fetch(HOST + "groups")
 		.then((response) => response.json())
 		.then((responseData) => {
 			this.setState({
 				groups: responseData
 			})
+			this.loadingModalToggle()
 		})
 	}
 
 	addGroup = (formData) => {
+		this.addGroupModalToggle()
+		this.loadingModalToggle()
 		fetch(HOST + "groups", {
 			method: "POST",
 			body: formData
 		})
 		.then((response) => {
-			this.addGroupModalToggle()
-			this.loadingModalToggle()
 			if(!response.ok) {
 				throw Error(response.statusText)
 			}
@@ -106,12 +108,12 @@ class Top extends Component {
 	}
 
 	addMember = (formData) => {
+		this.loadingModalToggle()
 		fetch(HOST + "members", {
 			method: "POST",
 			body: formData
 		})
 		.then((response) => {
-			this.loadingModalToggle()
 			if(!response.ok) {
 				throw Error(response.statusText)
 			}
@@ -126,12 +128,12 @@ class Top extends Component {
 	}
 
 	addRestaurant = (formData) => {
+		this.loadingModalToggle()
 		fetch(HOST + "restaurants", {
 			method: "POST",
 			body: formData
 		})
 		.then((response) => {
-			this.loadingModalToggle()
 			if(!response.ok) {
 				throw Error(response.statusText)
 			}
