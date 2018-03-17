@@ -180,7 +180,7 @@ class Top extends Component {
   fetchResult = (members_num_per_group) => {
     const params = new URLSearchParams()
     params.set('members_num_per_group', members_num_per_group)
-		fetch(HOST + `groups/${this.state.selectedGroup.id.toString()}?${ params.toString() }`)
+		fetch(HOST + `groups/${this.state.selectedGroup.id.toString()}?${ params.toString() }/result`)
 		.then((response) => {
 			this.addMemberModalToggle()
 			this.loadingModalToggle()
